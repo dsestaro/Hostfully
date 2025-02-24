@@ -47,7 +47,7 @@ public class BlockControllerTests {
 	private BlockService blockService;
 
 	@Test
-	public void testTheBlockCreationWithInconsistentDates() throws Exception {
+	public void testTheBlockCreationWithDatesAlreadyBooked() throws Exception {
 		BookingDto bookingDto = new BookingDto();
 		
 		bookingDto.setStartDate(new Date());
@@ -65,7 +65,7 @@ public class BlockControllerTests {
 	}
 	
 	@Test
-	public void testTheBlockCreationWithDatesAlreadyBooked() throws Exception {
+	public void testTheBlockCreationWithInconsistentDates() throws Exception {
 		BookingDto bookingDto = new BookingDto();
 		
 		bookingDto.setStartDate(new Date());

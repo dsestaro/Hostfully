@@ -98,7 +98,7 @@ public class BookingController {
     }
 	
 	@PatchMapping(path = "/{id}/rebook")
-    public BookingDto RebookBooking(@PathVariable long id){
+    public BookingDto rebookBooking(@PathVariable long id){
 
 		logger.info("Rebooking booking with id %s.", 
 				id);

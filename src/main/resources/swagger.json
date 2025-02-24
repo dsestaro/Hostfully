@@ -1,0 +1,558 @@
+{
+  "openapi": "3.0.0",
+  "servers": [],
+  "info": {
+    "description": "Hostfully test APIs",
+    "version": "1.0.0",
+    "title": "Hostfully",
+    "contact": {
+      "email": "dsestaro@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Booking",
+      "description": "Booking operations."
+    },
+    {
+      "name": "Block",
+      "description": "Block operations."
+    },
+    {
+      "name": "Property",
+      "description": "Property operations."
+    }
+  ],
+  "paths": {
+    "/property": {
+      "post": {
+        "tags": [
+          "Property"
+        ],
+        "summary": "Creates a property",
+        "operationId": "createProperty",
+        "description": "Creates a property",
+        "responses": {
+          "200": {
+            "description": "Property created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Property"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Property"
+              }
+            }
+          },
+          "description": "Booking to be created"
+        }
+      }
+    },
+    "/booking/{id}": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Retrieves a booking",
+        "operationId": "getBooking",
+        "description": "Retrieves an existing booking",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Booking ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Booking doesn´t exist"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Deletes a booking",
+        "operationId": "deleteBooking",
+        "description": "Deletes an existing booking",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Booking ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking deleted"
+          },
+          "404": {
+            "description": "Booking doesn´t exist"
+          }
+        }
+      }
+    },
+    "/booking": {
+      "post": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Creates a booking",
+        "operationId": "createBooking",
+        "description": "Creates a booking",
+        "responses": {
+          "200": {
+            "description": "Booking created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid dates or booking already created"
+          },
+          "409": {
+            "description": "Booking dates not available"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Booking"
+              }
+            }
+          },
+          "description": "Booking to be created"
+        }
+      },
+      "put": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Updates a booking",
+        "operationId": "updateBooking",
+        "description": "Updates an existing booking",
+        "responses": {
+          "200": {
+            "description": "Booking updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid dates"
+          },
+          "404": {
+            "description": "Booking doesn´t exist"
+          },
+          "409": {
+            "description": "Booking dates not available"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Booking"
+              }
+            }
+          },
+          "description": "Booking to be updated"
+        }
+      }
+    },
+    "/booking/{id}/cancel": {
+      "patch": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Cancel a booking",
+        "operationId": "cancelBooking",
+        "description": "Cancel an existing booking",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Booking ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cancelled booking matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Booking doesn´t exist"
+          }
+        }
+      }
+    },
+    "/booking/{id}/rebook": {
+      "patch": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Rebook a booking",
+        "operationId": "rebookBooking",
+        "description": "Rebook a cancelled booking",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Booking ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rebooked booking matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Booking doesn´t exist"
+          }
+        }
+      }
+    },
+    "/block/{id}": {
+      "get": {
+        "tags": [
+          "Block"
+        ],
+        "summary": "Retrieves a block",
+        "operationId": "getBlock",
+        "description": "Retrieves an existing block",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Block ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Block matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block doesn´t exist"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Block"
+        ],
+        "summary": "Deletes a block",
+        "operationId": "deleteBlock",
+        "description": "Deletes an existing block",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Block ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Block deleted"
+          },
+          "404": {
+            "description": "Block doesn´t exist"
+          }
+        }
+      }
+    },
+    "/block": {
+      "post": {
+        "tags": [
+          "Block"
+        ],
+        "summary": "Creates a block",
+        "operationId": "createBlock",
+        "description": "Creates a block",
+        "responses": {
+          "200": {
+            "description": "Block created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid dates or block already created"
+          },
+          "409": {
+            "description": "Block dates not available"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Booking"
+              }
+            }
+          },
+          "description": "Block to be created"
+        }
+      },
+      "put": {
+        "tags": [
+          "Block"
+        ],
+        "summary": "Updates a block",
+        "operationId": "updateBlock",
+        "description": "Updates an existing block",
+        "responses": {
+          "200": {
+            "description": "Block updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid dates"
+          },
+          "404": {
+            "description": "Block doesn´t exist"
+          },
+          "409": {
+            "description": "Block dates not available"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Booking"
+              }
+            }
+          },
+          "description": "Block to be updated"
+        }
+      }
+    },
+    "/block/{id}/cancel": {
+      "patch": {
+        "tags": [
+          "Block"
+        ],
+        "summary": "Cancel a block",
+        "operationId": "cancelBlock",
+        "description": "Cancel an existing block",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Block ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cancelled block matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block doesn´t exist"
+          }
+        }
+      }
+    },
+    "/block/{id}/rebook": {
+      "patch": {
+        "tags": [
+          "Block"
+        ],
+        "summary": "Rebook a block",
+        "operationId": "rebookBlock",
+        "description": "Rebook a cancelled block",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Block ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rebooked block matching the ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block doesn´t exist"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Booking": {
+        "type": "object",
+        "required": [
+          "propertyId",
+          "startDate",
+          "endDate"
+        ],
+        "properties": {
+          "bookingId": {
+            "type": "integer",
+            "example": 1323
+          },
+          "propertyId": {
+            "type": "integer",
+            "example": 423
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1740353651686"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "1740353951686"
+          },
+          "manufacturer": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GuestList"
+            }
+          },
+          "bookingStatus": {
+            "enum": [
+              "BOOKED",
+              "CANCELLED",
+              "DELETED"
+            ]
+          }
+        }
+      },
+      "GuestList": {
+        "required": [
+          "name",
+          "document"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Guest name"
+          },
+          "document": {
+            "type": "string",
+            "example": "Guest document"
+          }
+        },
+        "type": "object"
+      },
+      "Property": {
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Property name"
+          }
+        },
+        "type": "object"
+      }
+    }
+  }
+}

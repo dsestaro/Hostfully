@@ -47,7 +47,7 @@ public class BookingControllerTests {
 	private BookingService bookingService;
 
 	@Test
-	public void testTheBookingCreationWithInconsistentDates() throws Exception {
+	public void testTheBookingCreationWithDatesAlreadyBooked() throws Exception {
 		BookingDto bookingDto = new BookingDto();
 		
 		bookingDto.setStartDate(new Date());
@@ -66,7 +66,7 @@ public class BookingControllerTests {
 	}
 	
 	@Test
-	public void testTheBookingCreationWithDatesAlreadyBooked() throws Exception {
+	public void testTheBookingCreationWithInconsistentDates() throws Exception {
 		BookingDto bookingDto = new BookingDto();
 		
 		bookingDto.setStartDate(new Date());
