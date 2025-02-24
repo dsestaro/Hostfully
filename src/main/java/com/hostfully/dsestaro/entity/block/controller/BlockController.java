@@ -30,19 +30,17 @@ public class BlockController {
 	@PostMapping
     public BookingDto createBlock(@Valid @RequestBody BookingDto booking){
 
-		logger.info("Creating block for property {}, with start date of {} and end date of {}, for {} guests.", 
+		logger.info("Creating block for property {}, with start date of {} and end date of {}.", 
 				booking.getPropertyId(),
 				booking.getStartDate(), 
-				booking.getEndDate(), 
-				booking.getGuestList().size());
+				booking.getEndDate());
 		
 		booking = blockService.create(booking);
 		
-		logger.info("Block for property {}, with start date of {} and end date of {}, for {} guests created successfully with id {}.", 
+		logger.info("Block for property {}, with start date of {} and end date of {} created successfully with id {}.", 
 				booking.getPropertyId(),
 				booking.getStartDate(), 
-				booking.getEndDate(), 
-				booking.getGuestList().size(),
+				booking.getEndDate(),
 				booking.getBookingId());
 		
         return booking;
@@ -51,19 +49,17 @@ public class BlockController {
 	@PutMapping
     public BookingDto updateBlock(@Valid @RequestBody BookingDto booking){
 
-		logger.info("Updating block for property {}, with start date of {} and end date of {}, for {} guests.", 
+		logger.info("Updating block for property {}, with start date of {} and end date of {}.", 
 				booking.getPropertyId(),
 				booking.getStartDate(), 
-				booking.getEndDate(), 
-				booking.getGuestList().size());
+				booking.getEndDate());
 		
 		booking = blockService.update(booking);
 		
-		logger.info("Block for property {}, with start date of {} and end date of {}, for {} guests executed successfully with id {}.", 
+		logger.info("Block for property {}, with start date of {} and end date of {} executed successfully with id {}.", 
 				booking.getPropertyId(),
 				booking.getStartDate(), 
-				booking.getEndDate(), 
-				booking.getGuestList().size(),
+				booking.getEndDate(),
 				booking.getBookingId());
 		
         return booking;

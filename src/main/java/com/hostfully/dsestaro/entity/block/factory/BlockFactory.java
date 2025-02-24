@@ -3,6 +3,8 @@ package com.hostfully.dsestaro.entity.block.factory;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.hostfully.dsestaro.entity.booking.dto.BookingDto;
 import com.hostfully.dsestaro.entity.booking.dto.GuestDto;
 import com.hostfully.dsestaro.entity.booking.model.Booking;
@@ -11,6 +13,7 @@ import com.hostfully.dsestaro.entity.booking.model.BookingType;
 import com.hostfully.dsestaro.entity.booking.model.Guest;
 import com.hostfully.dsestaro.entity.property.model.Property;
 
+@Service
 public class BlockFactory {
 	
 	public Booking convertForCreation(BookingDto bookingDto, Property property) {
